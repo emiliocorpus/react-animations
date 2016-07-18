@@ -1,0 +1,12 @@
+{
+  "name": "something",
+  "dependencies" : {
+    "browserify": "~10.2.4",
+    "browserify-incremental": "^3.0.1",
+    "react-flip-move": "2.4.1"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
+}

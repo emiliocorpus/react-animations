@@ -14,6 +14,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'oauth2'
 gem 'turbolinks'
 gem 'rails_12factor'
+gem 'browserify-rails'
 
 
 group :development, :test do

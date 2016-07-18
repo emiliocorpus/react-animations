@@ -22,5 +22,8 @@ module AnimationsTutorial
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.react.addons = true
+
+    config.browserify_rails.evaluate_node_modules = true
   end
 end
