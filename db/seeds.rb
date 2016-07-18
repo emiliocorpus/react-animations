@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 	Pokemon.create(
 		name: 'Bulbasur', 
-		picture_url:'http://pokemonqrcode.com/image/cache/catalog/Pokemon/Gen1/bulbasaur-228x228.jpg', 
+		picture_url:'http://pokemonqrcode.com/image/cache/catalog/Pokemon/Gen1/bulbasaur-500x500.jpg', 
 		description:'The seed on its back is filled with nutrients. The seed grows steadily larger as its body grows.'
 	)
 

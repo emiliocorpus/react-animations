@@ -45,17 +45,18 @@ div.header {
 	color:white;
 }
 
-
-
-div.ghastly-container {
-	margin:0 auto;
-	height:100vh;
-	background-color:#575757;
-	display:table;
-}
-div.ghastly-container div:first-child {
-	padding:4%;
-	display:table-cell;
+div.pokemon-container{
+	padding:3%;
 	text-align:center;
-	vertical-align:center;
+	border:3px solid blue;
+	width:80%;
+	margin:0 auto;
+	margin-bottom:2%;
+}
+div.pokeimage-container img{
+	height:100px;
+	width:100px;
+}
+p.poke-description{
+	text-align:left;
 }
