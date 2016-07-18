@@ -5,11 +5,8 @@ var Pokedex = React.createClass({
 		}
 	},
 	removePokemon:function(pokemon){
-		debugger
 		var index = this.state.currentPokedex.indexOf(pokemon)
-		debugger
 		var newPokedex= React.addons.update(this.state.currentPokedex, {$splice: [[index,1]]})
-		debugger
 		this.replaceState({
 			currentPokedex: newPokedex
 		})
@@ -26,9 +23,22 @@ var Pokedex = React.createClass({
 	render:function() {
 		return (
 			<div className="pokedex-container">
-				<FlipMove easing="cubic-bezier(0, 0.7, 0.8, 0.1)">
+				<div className="container-fluid btns-container">
+					<div className="btn btn-info debugger">
+						Sort by:
+					</div>
+
+					<div className="btn btn-primary debugger">
+						Shuffle
+					</div>
+
+					<div className="btn btn-success debugger">
+						Display More
+					</div>
+				</div>
+				<FlipMove enterAnimation="elevator" leaveAnimation="accordianVertical">
 					{this.pokemonGenerator()}
-		        </FlipMove>
+				</FlipMove>
 			</div>
 		)
 	}

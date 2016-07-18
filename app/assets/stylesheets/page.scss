@@ -1,3 +1,6 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -44,6 +47,20 @@ div.header {
 	text-align:center;
 	color:white;
 }
+
+div.btns-container {
+	margin-bottom:2%;
+	text-align:center;
+	margin:0 auto;
+}
+div.btn {
+	margin:3%;
+}
+
+
+
+
+
 
 div.pokemon-container{
 	padding:3%;
