@@ -2,20 +2,20 @@ var Pokedex = React.createClass({
 	getInitialState:function(){
 		return {
 			currentPokedex: this.props.pokemon,
-			currentShown: [],
-			limit: 5
+			toBeShown: {errors:[], pokemon:this.props.pokemon},
+			limit: 3
 		}
 	},
 	removePokemon:function(pokemon){
-		var index = this.state.currentPokedex.indexOf(pokemon)
-		var newPokedex= React.addons.update(this.state.currentPokedex, {$splice: [[index,1]]})
+		var index = this.state.toBeShown.pokemon.indexOf(pokemon)
+		var updatedDisplay= React.addons.update(this.state.toBeShown.pokemon, {$splice: [[index,1]]})
 		this.setState({
-			currentPokedex: newPokedex
+			toBeShown:{errors:[], pokemon:updatedDisplay}
 		})
 	},
 	shuffle:function(){
-		var currentPokedex = this.state.currentPokedex
-		var currentIndex = currentPokedex.length, temporaryValue, randomIndex;
+		var currentShown = this.state.toBeShown.pokemon
+		var currentIndex = currentShown.length, temporaryValue, randomIndex;
 
 		  // While there remain elements to shuffle...
 		  while (0 !== currentIndex) {
@@ -23,75 +23,108 @@ var Pokedex = React.createClass({
 		    randomIndex = Math.floor(Math.random() * currentIndex);
 		    currentIndex -= 1;
 		    // And swap it with the current element.
-		    temporaryValue = currentPokedex[currentIndex];
-		    currentPokedex[currentIndex] = currentPokedex[randomIndex];
-		    currentPokedex[randomIndex] = temporaryValue;
+		    temporaryValue = currentShown[currentIndex];
+		    currentShown[currentIndex] = currentShown[randomIndex];
+		    currentShown[randomIndex] = temporaryValue;
 		  }
 		this.setState({
-			currentShown: currentPokedex
+			toBeshown: {errors:[], pokemon: currentShown } 
 		})
 	},
 	increaseDisplay:function(){
-		this.setState({
-			limit: this.state.limit + 5
-		})
-	},
-	handleSearchChange:function(e){
-		e.preventDefault()
-		var searchPattern = new RegExp('^' + e.target.value);
-		var matched = []
-		for (var i = 0; i < this.state.currentPokedex; i++ ){
-			var pokemon = this.state.currentPokedex[i]
-			if (searchPattern.test(this.state.currentPokedex[i].name)) {
-				matched.push(<Pokemon pokemon={pokemon} key={pokemon.id} handleRemove={this.removePokemon} />)
-			}
-		}
-		if (matched.length == 0) {
+		if (this.state.limit + 5 >= 151) {
 			this.setState({
-				matched: <div>No found matches</div>
+				limit: 151
 			})
 		}
 		else {
 			this.setState({
-				currentShown: matched
+				limit: this.state.limit + 3
+			})
+		}
+		
+	},
+	handleSearchChange:function(e){
+		e.preventDefault()
+		var searchString = e.target.value.toLowerCase()
+		var searchStringRegEx = new RegExp(searchString)
+		var found=[]
+		var name;
+		for (var i=0; i< this.state.currentPokedex.length; i++) {
+			name = this.state.currentPokedex[i].name.toLowerCase()
+			if (searchStringRegEx.test(name)) {
+				found.push(this.state.currentPokedex[i])
+			}
+		}
+		if (found.length > 0) {
+			this.setState({
+				toBeShown: {errors:[], pokemon: found}
+			})
+		}
+		else {
+			this.setState({
+				toBeShown:{errors:['No matches found'], pokemon: found},
+				limit:3
 			})
 		}
 	},
 	preventSubmit:function(e){
 		e.preventDefault()
 	},
-	pokemonGenerator:function(){
-		var pokedex = this.state.currentPokedex
-		var pokemon = []
-		for (var i = 0; i < this.state.limit; i++) {
-			pokemon.push(<Pokemon pokemon={pokedex[i]} key={pokedex[i].id} handleRemove={this.removePokemon}/>)
+	pokemonDisplayGenerator:function(limit){
+		if (this.state.toBeShown.errors.length == 0) {
+			var pokemon = this.state.toBeShown.pokemon
+			if (limit > pokemon.length){
+				var display = []
+				for (var i = 0; i < pokemon.length; i++) {
+					display.push(<Pokemon pokemon={pokemon[i]} key={pokemon[i].id} handleRemove={this.removePokemon}/>)
+				}
+			}
+			else {
+				var display = []
+				for (var i = 0; i < limit; i++) {
+					display.push(<Pokemon pokemon={pokemon[i]} key={pokemon[i].id} handleRemove={this.removePokemon}/>)
+				}
+			}
+			return display
 		}
-		this.setState({
-			currentShown: pokemon
-		})
-		return pokemon
+		else {
+			return <div className="search-error">No matches found</div>
+		}
+			
+	},
+	displayShowMore:function(){
+		var displayShowMore
+		
+		if (this.state.limit < 151 ) {
+			if (this.state.toBeShown.errors.length > 0){
+				return
+			}
+			else {
+				displayShowMore = <div className="display-more"><div className="btn btn-success" onClick={this.increaseDisplay}>Show More</div></div>
+			}
+		}
+		return displayShowMore
 	},
 	render:function() {
 		return (
 			<div className="pokedex-container">
+
 				<div className="container-fluid btns-container">
-					
 					<form className="form-inline" role="form" onSubmit={this.preventSubmit}>
 					  <div className="form-group">
 					    <input type="text" className="form-control" placeholder="Search" onChange={this.handleSearchChange}/>
 					  </div>
 					  <button type="button" className="btn btn-default" onClick={this.shuffle}>Shuffle</button>
 					</form>
-					
 				</div>
+
 				<FlipMove enterAnimation="elevator" leaveAnimation="accordianVertical">
-					{this.pokemonGenerator()}
+					{this.pokemonDisplayGenerator(this.state.limit)}
 				</FlipMove>
-				<div className="display-more debugger">
-					<div className="btn btn-success debugger" onClick={this.increaseDisplay}>
-						Show More
-					</div>
-				</div>
+
+				{this.displayShowMore()}
+
 			</div>
 		)
 	}

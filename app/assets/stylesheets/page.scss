@@ -24,9 +24,9 @@ body {
 	// margin-top:0;
 	width:100%;
 }
-// .debugger {
-// 	border:1px solid red;
-// }
+.debugger {
+	border:1px solid red;
+}
 div.page-container {
 	height:100%;
 	width:100%;
@@ -68,10 +68,12 @@ div.btns-container {
 	text-align:center;
 	margin:0 auto;
 }
-div.btn {
-	margin:3%;
+div.container-fluid{
+	margin-bottom:20px;
 }
-
+div.btn, div.btn-default{
+	margin-left:20px;
+}
 
 
 
@@ -122,5 +124,13 @@ div.display-more{
 	width:100%;
 	float:left;
 	margin:0 auto;
+	text-align:center;
+}
+
+div.search-error {
+	width:100%;
+	margin:0 auto;
+	color:red;
+	font-size:20px;
 	text-align:center;
 }
