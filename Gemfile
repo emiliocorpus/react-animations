@@ -15,6 +15,7 @@ gem 'oauth2'
 gem 'turbolinks'
 gem 'rails_12factor'
 gem 'browserify-rails'
+gem 'nokogiri'
 
 
 group :development, :test do

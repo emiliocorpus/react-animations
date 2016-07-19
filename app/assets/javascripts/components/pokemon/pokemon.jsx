@@ -6,6 +6,7 @@ var Pokemon = React.createClass({
 	render:function() {
 		return (
 			<div className="pokemon-container">
+				<h2>{this.props.pokemon.id}</h2>
 				<h3>{this.props.pokemon.name}</h3>
 				<div className="pokeimage-container">
 					<img src={this.props.pokemon.picture_url} />

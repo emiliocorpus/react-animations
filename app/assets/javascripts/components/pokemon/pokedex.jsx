@@ -37,10 +37,9 @@ var Pokedex = React.createClass({
 		}
 		return pokemon
 	},
-
 	render:function() {
 		return (
-			<div className="pokedex-container">
+			<div className="pokedex-container debugger">
 				<div className="container-fluid btns-container">
 					<div className="btn btn-info debugger">
 						Sort by:
