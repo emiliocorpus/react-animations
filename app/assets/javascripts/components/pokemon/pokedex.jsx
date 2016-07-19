@@ -11,6 +11,24 @@ var Pokedex = React.createClass({
 			currentPokedex: newPokedex
 		})
 	},
+	shuffle:function(){
+		var currentPokedex = this.state.currentPokedex
+		var currentIndex = currentPokedex.length, temporaryValue, randomIndex;
+
+		  // While there remain elements to shuffle...
+		  while (0 !== currentIndex) {
+		    // Pick a remaining element...
+		    randomIndex = Math.floor(Math.random() * currentIndex);
+		    currentIndex -= 1;
+		    // And swap it with the current element.
+		    temporaryValue = currentPokedex[currentIndex];
+		    currentPokedex[currentIndex] = currentPokedex[randomIndex];
+		    currentPokedex[randomIndex] = temporaryValue;
+		  }
+		this.replaceState({
+			currentPokedex: currentPokedex
+		})
+	},
 	pokemonGenerator:function(){
 		var pokedex = this.state.currentPokedex
 		var pokemon = []
@@ -28,7 +46,7 @@ var Pokedex = React.createClass({
 						Sort by:
 					</div>
 
-					<div className="btn btn-primary debugger">
+					<div className="btn btn-primary debugger" onClick={this.shuffle}>
 						Shuffle
 					</div>
 
