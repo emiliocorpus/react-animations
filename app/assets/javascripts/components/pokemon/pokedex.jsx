@@ -2,7 +2,7 @@ var Pokedex = React.createClass({
 	getInitialState:function(){
 		return {
 			currentPokedex: this.props.pokemon,
-			limit: 5
+			limit: 4
 		}
 	},
 	removePokemon:function(pokemon){
@@ -62,7 +62,7 @@ var Pokedex = React.createClass({
 				</FlipMove>
 				<div className="display-more debugger">
 					<div className="btn btn-success debugger" onClick={this.increaseDisplay}>
-						Display More
+						Show More
 					</div>
 				</div>
 			</div>

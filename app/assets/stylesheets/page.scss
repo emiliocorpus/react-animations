@@ -15,6 +15,7 @@ body {
 	height:2000px;
 	padding:0;
 	margin:0;
+	background-color:#6ED9FF;
 	// background: url('pokeball.png') no-repeat center center fixed; 
 	// -webkit-background-size: cover;
 	// -moz-background-size: cover;
@@ -23,9 +24,9 @@ body {
 	// margin-top:0;
 	width:100%;
 }
-.debugger {
-	border:1px solid red;
-}
+// .debugger {
+// 	border:1px solid red;
+// }
 div.page-container {
 	height:100%;
 	width:100%;
@@ -75,22 +76,25 @@ div.btn {
 
 
 div.pokedex-container {
+	background-color:#6ED9FF;
 	height:100%;
 	width:100%;
 	float:left;
 }
 div.pokemon-container{
+	background-color:white;
 	padding-left:1%;
 	padding-bottom:15px;
 	text-align:center;
 	border:3px solid blue;
+	border-radius:25px;
+	box-shadow:10px 10px 10px #656565;
 	width:100%;
 	margin-bottom:2%;
 	float:left;
 }
 div.poke-image {
 	float:left;
-	border:1px solid red;
 	margin-right:10px;
 }
 
