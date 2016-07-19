@@ -2,7 +2,8 @@ var Pokedex = React.createClass({
 	getInitialState:function(){
 		return {
 			currentPokedex: this.props.pokemon,
-			limit: 4
+			currentShown: [],
+			limit: 5
 		}
 	},
 	removePokemon:function(pokemon){
@@ -27,7 +28,7 @@ var Pokedex = React.createClass({
 		    currentPokedex[randomIndex] = temporaryValue;
 		  }
 		this.setState({
-			currentPokedex: currentPokedex
+			currentShown: currentPokedex
 		})
 	},
 	increaseDisplay:function(){
@@ -35,30 +36,56 @@ var Pokedex = React.createClass({
 			limit: this.state.limit + 5
 		})
 	},
-	pokemonGenerator:function(limit){
+	handleSearchChange:function(e){
+		e.preventDefault()
+		var searchPattern = new RegExp('^' + e.target.value);
+		var matched = []
+		for (var i = 0; i < this.state.currentPokedex; i++ ){
+			var pokemon = this.state.currentPokedex[i]
+			if (searchPattern.test(this.state.currentPokedex[i].name)) {
+				matched.push(<Pokemon pokemon={pokemon} key={pokemon.id} handleRemove={this.removePokemon} />)
+			}
+		}
+		if (matched.length == 0) {
+			this.setState({
+				matched: <div>No found matches</div>
+			})
+		}
+		else {
+			this.setState({
+				currentShown: matched
+			})
+		}
+	},
+	preventSubmit:function(e){
+		e.preventDefault()
+	},
+	pokemonGenerator:function(){
 		var pokedex = this.state.currentPokedex
 		var pokemon = []
-		for (var i = 0; i <= limit; i++) {
+		for (var i = 0; i < this.state.limit; i++) {
 			pokemon.push(<Pokemon pokemon={pokedex[i]} key={pokedex[i].id} handleRemove={this.removePokemon}/>)
 		}
+		this.setState({
+			currentShown: pokemon
+		})
 		return pokemon
 	},
 	render:function() {
 		return (
 			<div className="pokedex-container">
 				<div className="container-fluid btns-container">
-					<div className="btn btn-info debugger">
-						Sort by:
-					</div>
-
-					<div className="btn btn-primary debugger" onClick={this.shuffle}>
-						Shuffle
-					</div>
-
+					
+					<form className="form-inline" role="form" onSubmit={this.preventSubmit}>
+					  <div className="form-group">
+					    <input type="text" className="form-control" placeholder="Search" onChange={this.handleSearchChange}/>
+					  </div>
+					  <button type="button" className="btn btn-default" onClick={this.shuffle}>Shuffle</button>
+					</form>
 					
 				</div>
 				<FlipMove enterAnimation="elevator" leaveAnimation="accordianVertical">
-					{this.pokemonGenerator(this.state.limit)}
+					{this.pokemonGenerator()}
 				</FlipMove>
 				<div className="display-more debugger">
 					<div className="btn btn-success debugger" onClick={this.increaseDisplay}>

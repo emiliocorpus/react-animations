@@ -45,7 +45,7 @@ var Pokemon = React.createClass({
 					{display}
 					</div>
 				<p className="poke-description">
-					Description: {this.props.pokemon.description}
+					<b>Description:</b> {this.props.pokemon.description}
 					
 				</p>
 				
