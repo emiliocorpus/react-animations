@@ -85,11 +85,28 @@ div.pokemon-container{
 	width:70%;
 	margin-left:1em;
 	margin-bottom:2%;
+	float:left;
 }
-div.pokeimage-container img{
-	height:100px;
-	width:100px;
+div.poke-image {
+	float:left;
+	border:1px solid red;
+	margin-right:10px;
+}
+
+div.poke-image img{
+	height:200px;
+	width:200px;
 }
 p.poke-description{
 	text-align:left;
+	font-size:30px;
+	padding-left:18px;
+	padding:2%;
+}
+div.remove-poke-container {
+	width:100%;
+	text-align:right;
+}
+div.remove-poke {
+	text-align:right;
 }
