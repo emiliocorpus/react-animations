@@ -28,22 +28,25 @@ var Pokemon = React.createClass({
 		return (
 			<div className="pokemon-container" onMouseOver={this.showRemove} onMouseLeave={this.hideRemove}>
 				
-				<div className="remove-poke-container">
-					{display}
-				</div>
+				
 
 				<div className="poke-id">
-					<h2>{this.props.pokemon.id}</h2>
+					<h4>{this.props.pokemon.id}</h4>
 				</div>
 
 				<div className="poke-name">
-					<h1>{this.props.pokemon.name}</h1>	
+					<h3>{this.props.pokemon.name}</h3>	
 				</div>
 				<div className="poke-image">
 					<img src={this.props.pokemon.picture_url} />
 				</div>
+
+				<div className="remove-poke-container">
+					{display}
+					</div>
 				<p className="poke-description">
 					Description: {this.props.pokemon.description}
+					
 				</p>
 				
 			</div>

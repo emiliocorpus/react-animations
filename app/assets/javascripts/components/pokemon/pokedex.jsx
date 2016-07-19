@@ -1,13 +1,14 @@
 var Pokedex = React.createClass({
 	getInitialState:function(){
 		return {
-			currentPokedex: this.props.pokemon
+			currentPokedex: this.props.pokemon,
+			limit: 5
 		}
 	},
 	removePokemon:function(pokemon){
 		var index = this.state.currentPokedex.indexOf(pokemon)
 		var newPokedex= React.addons.update(this.state.currentPokedex, {$splice: [[index,1]]})
-		this.replaceState({
+		this.setState({
 			currentPokedex: newPokedex
 		})
 	},
@@ -25,21 +26,26 @@ var Pokedex = React.createClass({
 		    currentPokedex[currentIndex] = currentPokedex[randomIndex];
 		    currentPokedex[randomIndex] = temporaryValue;
 		  }
-		this.replaceState({
+		this.setState({
 			currentPokedex: currentPokedex
 		})
 	},
-	pokemonGenerator:function(){
+	increaseDisplay:function(){
+		this.setState({
+			limit: this.state.limit + 5
+		})
+	},
+	pokemonGenerator:function(limit){
 		var pokedex = this.state.currentPokedex
 		var pokemon = []
-		for (var i = 0; i <= pokedex.length -1; i++) {
+		for (var i = 0; i <= limit; i++) {
 			pokemon.push(<Pokemon pokemon={pokedex[i]} key={pokedex[i].id} handleRemove={this.removePokemon}/>)
 		}
 		return pokemon
 	},
 	render:function() {
 		return (
-			<div className="pokedex-container debugger">
+			<div className="pokedex-container">
 				<div className="container-fluid btns-container">
 					<div className="btn btn-info debugger">
 						Sort by:
@@ -49,13 +55,16 @@ var Pokedex = React.createClass({
 						Shuffle
 					</div>
 
-					<div className="btn btn-success debugger">
+					
+				</div>
+				<FlipMove enterAnimation="elevator" leaveAnimation="accordianVertical">
+					{this.pokemonGenerator(this.state.limit)}
+				</FlipMove>
+				<div className="display-more debugger">
+					<div className="btn btn-success debugger" onClick={this.increaseDisplay}>
 						Display More
 					</div>
 				</div>
-				<FlipMove enterAnimation="elevator" leaveAnimation="accordianVertical">
-					{this.pokemonGenerator()}
-				</FlipMove>
 			</div>
 		)
 	}

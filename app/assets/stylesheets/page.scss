@@ -75,15 +75,16 @@ div.btn {
 
 
 div.pokedex-container {
-	text-align:right;
+	height:100%;
+	width:100%;
+	float:left;
 }
-
 div.pokemon-container{
-	padding:3%;
+	padding-left:1%;
+	padding-bottom:15px;
 	text-align:center;
 	border:3px solid blue;
-	width:70%;
-	margin-left:1em;
+	width:100%;
 	margin-bottom:2%;
 	float:left;
 }
@@ -94,19 +95,28 @@ div.poke-image {
 }
 
 div.poke-image img{
-	height:200px;
-	width:200px;
+	height:100px;
+	width:100px;
 }
 p.poke-description{
 	text-align:left;
-	font-size:30px;
+	font-size:15px;
 	padding-left:18px;
 	padding:2%;
 }
 div.remove-poke-container {
 	width:100%;
-	text-align:right;
+	text-align:center;
+	float:right;
+	height:15px;
 }
 div.remove-poke {
-	text-align:right;
+	text-align:center;
+
+}
+div.display-more{
+	width:100%;
+	float:left;
+	margin:0 auto;
+	text-align:center;
 }
