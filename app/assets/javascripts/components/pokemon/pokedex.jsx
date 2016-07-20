@@ -153,7 +153,7 @@ var Pokedex = React.createClass({
 					</form>
 				</div>
 
-				<FlipMove enterAnimation="elevator" leaveAnimation="accordianVertical">
+				<FlipMove staggerDelayBy={300} enterAnimation="elevator" leaveAnimation="none">
 					{this.pokemonDisplayGenerator(this.state.limit)}
 				</FlipMove>
 
