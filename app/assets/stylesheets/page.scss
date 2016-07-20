@@ -12,16 +12,10 @@ html {
   box-sizing: inherit;
 }
 body {
-	height:2000px;
+	font-family: 'Titillium Web', sans-serif;
 	padding:0;
 	margin:0;
 	background-color:#6ED9FF;
-	// background: url('pokeball.png') no-repeat center center fixed; 
-	// -webkit-background-size: cover;
-	// -moz-background-size: cover;
-	// -o-background-size: cover;
-	// background-size: cover;
-	// margin-top:0;
 	width:100%;
 }
 .debugger {
@@ -54,6 +48,22 @@ div.header {
 	text-align:center;
 	color:white;
 }
+div.footer-container{
+	background-color:white;
+	color:white;
+	height:200px;
+	width:100%;
+	display:table;
+	margin: 0 auto;
+	text-align:center;
+}
+div.footer {
+	color:black;
+	margin: 0 auto;
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
 
 div.body-container {
 	margin-top:3%;
@@ -82,15 +92,18 @@ div.pokedex-container {
 	height:100%;
 	width:100%;
 	float:left;
+	padding-bottom:10%;
+	min-height:100vh;
 }
 div.pokemon-container{
 	background-color:white;
 	padding-left:1%;
 	padding-bottom:15px;
 	text-align:center;
-	border:3px solid blue;
+	border:3px solid #ACACAC;
 	border-radius:25px;
 	box-shadow:10px 10px 10px #656565;
+	height:15%;
 	width:100%;
 	margin-bottom:2%;
 	float:left;
@@ -103,6 +116,9 @@ div.poke-image {
 div.poke-image img{
 	height:100px;
 	width:100px;
+}
+div.poke-name {
+	font-family: 'Bangers', cursive;
 }
 p.poke-description{
 	text-align:left;

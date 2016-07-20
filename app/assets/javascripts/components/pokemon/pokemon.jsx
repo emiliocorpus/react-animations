@@ -38,7 +38,7 @@ var Pokemon = React.createClass({
 					<h3>{this.props.pokemon.name}</h3>	
 				</div>
 				<div className="poke-image">
-					<img src={this.props.pokemon.picture_url} />
+					<img src={this.props.pokemon.picture_url} className=''/>
 				</div>
 
 				<div className="remove-poke-container">

@@ -3,7 +3,8 @@ var Header = React.createClass({
 		return (
 			<div className='header-container debygger'>
 				<div className='header'>	
-					<h2>POKEDEX</h2>
+					<h2>POKÉDEX</h2>
+					<h4>on React</h4>
 				</div>
 			</div>	
 		)

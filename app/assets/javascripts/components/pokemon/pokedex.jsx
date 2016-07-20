@@ -1,10 +1,34 @@
 var Pokedex = React.createClass({
 	getInitialState:function(){
 		return {
-			currentPokedex: this.props.pokemon,
-			toBeShown: {errors:[], pokemon:this.props.pokemon},
+			currentPokedex: this.makeClone(this.props.pokemon),
+			toBeShown: {errors:[], pokemon:this.makeClone(this.props.pokemon)},
 			limit: 3
 		}
+	},
+	// FUNCTION THAT PROPERLY COPIES OBJECT
+	makeClone:function(obj) {
+	    var copy;
+	        // Handle the 3 simple types, and null or undefined
+	        if (null == obj || "object" != typeof obj) return obj;
+	        // Handle Array
+	        if (obj instanceof Array) {
+	            copy = [];
+	            for (var i = 0, len = obj.length; i < len; i++) {
+	                copy[i] = this.makeClone(obj[i]);
+	            }
+	            return copy;
+	        }
+	        // Handle Object
+	        if (obj instanceof Object) {
+	            copy = {};
+	            for (var attr in obj) {
+	                if (obj.hasOwnProperty(attr)) copy[attr] = this.makeClone(obj[attr]);
+	            }
+	            return copy;
+	        }
+
+	        throw new Error("Unable to copy obj! Its type isn't supported.");
 	},
 	removePokemon:function(pokemon){
 		var index = this.state.toBeShown.pokemon.indexOf(pokemon)
@@ -29,6 +53,12 @@ var Pokedex = React.createClass({
 		  }
 		this.setState({
 			toBeshown: {errors:[], pokemon: currentShown } 
+		})
+	},
+	reset:function(){
+		this.setState({
+			toBeShown: {errors:[], pokemon:this.makeClone(this.props.pokemon)},
+			limit: 3
 		})
 	},
 	increaseDisplay:function(){
@@ -100,6 +130,9 @@ var Pokedex = React.createClass({
 			if (this.state.toBeShown.errors.length > 0){
 				return
 			}
+			else if (this.state.toBeShown.pokemon.length < this.state.limit) {
+				return
+			}
 			else {
 				displayShowMore = <div className="display-more"><div className="btn btn-success" onClick={this.increaseDisplay}>Show More</div></div>
 			}
@@ -115,7 +148,8 @@ var Pokedex = React.createClass({
 					  <div className="form-group">
 					    <input type="text" className="form-control" placeholder="Search" onChange={this.handleSearchChange}/>
 					  </div>
-					  <button type="button" className="btn btn-default" onClick={this.shuffle}>Shuffle</button>
+					  <button type="button" className="btn btn-default btn-primary" onClick={this.shuffle}>Shuffle</button>
+					  <button type="button" className="btn btn-default btn-danger" onClick={this.reset}>Reset</button>
 					</form>
 				</div>
 

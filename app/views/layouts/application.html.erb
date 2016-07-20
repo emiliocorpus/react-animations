@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AnimationsTutorial</title>
+  <title>Pokédex on React</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web|Bangers' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<%= react_component 'Header' %>
-		<%= yield %>
-
+	<div className="body-container">
+		<%= react_component 'Header' %>
+			<%= yield %>
+		<%= react_component 'Footer' %>
+	</div>
 </body>
 </html>
