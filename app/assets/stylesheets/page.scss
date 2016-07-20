@@ -40,6 +40,8 @@ div.header-container {
 	height:100px;
 	width:100%;
 	background-color:#FF5E45;
+	box-shadow:5px 5px 5px #929292;
+	margin-bottom:5%;
 }
 div.header {
 	display:table-cell;
@@ -98,7 +100,7 @@ div.pokedex-container {
 div.pokemon-container{
 	background-color:white;
 	padding-left:1%;
-	padding-bottom:15px;
+	padding-bottom:50px;
 	text-align:center;
 	border:3px solid #ACACAC;
 	border-radius:25px;
@@ -122,7 +124,7 @@ div.poke-name {
 }
 p.poke-description{
 	text-align:left;
-	font-size:15px;
+	font-size:20px;
 	padding-left:18px;
 	padding:2%;
 }
@@ -150,3 +152,14 @@ div.search-error {
 	font-size:20px;
 	text-align:center;
 }
+// button.remove-btn{
+// 	box-shadow:5px 5px 5px #FF5859;
+// }
+.btn-shadow{
+	box-shadow:5px 5px 5px #5B5B5B
+}
+.margin-right-15 {
+	margin-right:15px;
+}
+
+

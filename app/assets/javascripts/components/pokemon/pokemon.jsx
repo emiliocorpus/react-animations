@@ -23,7 +23,7 @@ var Pokemon = React.createClass({
 	render:function() {
 		var display
 		if (this.state.showDelete) {
-			display = <div className="remove-poke"><a href="#" onClick={this.handleRemove}>X</a></div>
+			display = <div className="remove-poke"><button className="btn btn-danger remove-btn"onClick={this.handleRemove}>X</button></div>
 		}
 		return (
 			<div className="pokemon-container" onMouseOver={this.showRemove} onMouseLeave={this.hideRemove}>
@@ -45,7 +45,7 @@ var Pokemon = React.createClass({
 					{display}
 					</div>
 				<p className="poke-description">
-					<b>Description:</b> {this.props.pokemon.description}
+					<b>DESCRIPTION:</b> {this.props.pokemon.description}
 					
 				</p>
 				

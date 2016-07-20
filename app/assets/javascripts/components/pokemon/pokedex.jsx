@@ -134,7 +134,7 @@ var Pokedex = React.createClass({
 				return
 			}
 			else {
-				displayShowMore = <div className="display-more"><div className="btn btn-success" onClick={this.increaseDisplay}>Show More</div></div>
+				displayShowMore = <div className="display-more"><div className="btn btn-success btn-shadow" onClick={this.increaseDisplay}>Show More</div></div>
 			}
 		}
 		return displayShowMore
@@ -146,10 +146,10 @@ var Pokedex = React.createClass({
 				<div className="container-fluid btns-container">
 					<form className="form-inline" role="form" onSubmit={this.preventSubmit}>
 					  <div className="form-group">
-					    <input type="text" className="form-control" placeholder="Search" onChange={this.handleSearchChange}/>
+					    <input type="text" className="form-control margin-right-15" placeholder="Search" onChange={this.handleSearchChange}/>
 					  </div>
-					  <button type="button" className="btn btn-default btn-primary" onClick={this.shuffle}>Shuffle</button>
-					  <button type="button" className="btn btn-default btn-danger" onClick={this.reset}>Reset</button>
+					  <button type="button" className="btn btn-default btn-primary btn-shadow margin-right-15" onClick={this.shuffle}>Shuffle</button>
+					  <button type="button" className="btn btn-default btn-danger btn-shadow margin-right-15" onClick={this.reset}>Reset</button>
 					</form>
 				</div>
 
